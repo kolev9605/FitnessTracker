@@ -1,10 +1,11 @@
 ﻿using FitnessTracker.Application.Interfaces;
+using FitnessTracker.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitnessTracker.Persistance
 {
-    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
