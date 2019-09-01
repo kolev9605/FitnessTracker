@@ -34,6 +34,13 @@ namespace FitnessTracker.Web.Controllers
             this.configuration = configuration;
         }
 
+        [HttpGet]
+        [Route("test")]
+        public async Task<int> Test()
+        {
+            return 1;
+        }
+
         [HttpPost]
         [Route("Login")]
         public async Task<string> Login([FromBody] LoginModel model)
@@ -43,7 +50,9 @@ namespace FitnessTracker.Web.Controllers
             if (result.Succeeded)
             {
                 var applicationUser = userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return GenerateJwtToken(model.Email, applicationUser);
+                var token = GenerateJwtToken(model.Email, applicationUser);
+
+                return token;
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -64,7 +73,9 @@ namespace FitnessTracker.Web.Controllers
             if (result.Succeeded)
             {
                 await signInManager.SignInAsync(applicationUser, false);
-                return GenerateJwtToken(model.Email, applicationUser);
+                var token = GenerateJwtToken(model.Email, applicationUser);
+
+                return token;
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");

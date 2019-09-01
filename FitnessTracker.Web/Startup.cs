@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FitnessTracker.Application.Interfaces;
 using FitnessTracker.Domain.Entities;
 using FitnessTracker.Persistance;
@@ -11,14 +5,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace FitnessTracker.Web
 {
@@ -43,7 +38,7 @@ namespace FitnessTracker.Web
 
             //Add DbContext using PostgreSQL
             services.AddEntityFrameworkNpgsql()
-               .AddDbContext<IApplicationDbContext,ApplicationDbContext>()
+               .AddDbContext<IApplicationDbContext, ApplicationDbContext>()
                .BuildServiceProvider();
 
             //Add identity
@@ -51,6 +46,13 @@ namespace FitnessTracker.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            SetupJwt(services);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private void SetupJwt(IServiceCollection services)
+        {
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
             services
                 .AddAuthentication(options =>
@@ -72,8 +74,6 @@ namespace FitnessTracker.Web
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,17 +97,17 @@ namespace FitnessTracker.Web
 
             app.UseMvc();
 
-            app.UseSpa(spa =>
-            {
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-                spa.Options.SourcePath = "ClientApp";
+            //app.UseSpa(spa =>
+            //{
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
+            //    spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            //    }
+            //});
         }
     }
 }

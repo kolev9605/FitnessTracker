@@ -17,9 +17,6 @@ import 'hammerjs';
 import { TestComponent } from './components/test/test.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { ErrorInterceptor } from './helpers/error.interceptor';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +36,6 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
