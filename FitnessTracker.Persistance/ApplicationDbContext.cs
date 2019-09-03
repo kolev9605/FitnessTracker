@@ -7,11 +7,8 @@ namespace FitnessTracker.Persistance
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
 
-        }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,5 +20,11 @@ namespace FitnessTracker.Persistance
         {
             optionsBuilder.UseNpgsql("Host=localhost;Database=fitness_tracker;Username=postgres;Password=K0l3vK0l3v");
         }
+    }
+
+    public class Blog
+    {
+        public int Id { get; set; }
+        public string Url { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using FitnessTracker.Persistance;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,9 +24,8 @@ namespace FitnessTracker.Web.Controllers
         [Route("val")]
         public async Task<IActionResult> Values()
         {
-            var users = dbContext.Users.ToList();
 
-            return new OkObjectResult(users);
+            return new OkObjectResult(1);
         }
 
     }

@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{464C8AA8-12DC-490D-A87A-66DC7FBCECA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Web", "FitnessTracker.Web\FitnessTracker.Web.csproj", "{3A4776CD-E657-4BD6-93FF-EE4742EC1C50}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Domain", "FitnessTracker.Domain\FitnessTracker.Domain.csproj", "{2E5D1554-E9AE-458C-9E1B-BE52C8F7C737}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Application", "FitnessTracker.Application\FitnessTracker.Application.csproj", "{357A402F-8222-453A-94E0-5EA0DD3DE40D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Persistance", "FitnessTracker.Persistance\FitnessTracker.Persistance.csproj", "{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Api", "FitnessTracker.Api\FitnessTracker.Api.csproj", "{48A5E87B-223A-48C2-B827-C7787DBBED64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3A4776CD-E657-4BD6-93FF-EE4742EC1C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A4776CD-E657-4BD6-93FF-EE4742EC1C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A4776CD-E657-4BD6-93FF-EE4742EC1C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A4776CD-E657-4BD6-93FF-EE4742EC1C50}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E5D1554-E9AE-458C-9E1B-BE52C8F7C737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E5D1554-E9AE-458C-9E1B-BE52C8F7C737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E5D1554-E9AE-458C-9E1B-BE52C8F7C737}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,15 +35,19 @@ Global
 		{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3A4776CD-E657-4BD6-93FF-EE4742EC1C50} = {464C8AA8-12DC-490D-A87A-66DC7FBCECA3}
 		{2E5D1554-E9AE-458C-9E1B-BE52C8F7C737} = {E6765955-73DF-41FE-80DB-19ACB0947C67}
 		{357A402F-8222-453A-94E0-5EA0DD3DE40D} = {E6765955-73DF-41FE-80DB-19ACB0947C67}
 		{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17} = {50CD2221-663B-4368-8EDC-6E91E59A86D6}
+		{48A5E87B-223A-48C2-B827-C7787DBBED64} = {464C8AA8-12DC-490D-A87A-66DC7FBCECA3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B765FD2A-C14E-4BA2-A0FC-6C55B57A27E8}
