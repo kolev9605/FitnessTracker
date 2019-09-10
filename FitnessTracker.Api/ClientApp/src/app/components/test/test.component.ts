@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestItem } from 'src/app/models/test-item-model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-test',
@@ -12,12 +13,21 @@ export class TestComponent implements OnInit {
       new TestItem(2, 'Hi2')
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
   onEmmitedEvent(data: string) {
     console.log(data);
+  }
+
+  testHttp() {
+    this.http.get('https://localhost:44363/api/values').subscribe(data => {
+      console.log(data);
+    },
+    (error) => {
+      console.log(error);
+    })
   }
 }

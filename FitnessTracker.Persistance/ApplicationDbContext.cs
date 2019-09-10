@@ -7,12 +7,17 @@ namespace FitnessTracker.Persistance
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
+        public DbSet<Exercise> Exercises { get; set; }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
+
+        public DbSet<WorkoutItem> WorkoutItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -20,11 +25,5 @@ namespace FitnessTracker.Persistance
         {
             optionsBuilder.UseNpgsql("Host=localhost;Database=fitness_tracker;Username=postgres;Password=K0l3vK0l3v");
         }
-    }
-
-    public class Blog
-    {
-        public int Id { get; set; }
-        public string Url { get; set; }
     }
 }

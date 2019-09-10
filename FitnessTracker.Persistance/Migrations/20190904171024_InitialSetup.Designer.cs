@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FitnessTracker.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190903170647_Blogs")]
-    partial class Blogs
+    [Migration("20190904171024_InitialSetup")]
+    partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,16 +76,50 @@ namespace FitnessTracker.Persistance.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("FitnessTracker.Persistance.Blog", b =>
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.Exercise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.Workout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workouts");
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.WorkoutItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ExerciseId");
+
+                    b.Property<int>("Reps");
+
+                    b.Property<int>("Sets");
+
+                    b.Property<int>("WorkoutId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("WorkoutId");
+
+                    b.ToTable("WorkoutItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -193,6 +227,19 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.WorkoutItem", b =>
+                {
+                    b.HasOne("FitnessTracker.Domain.Entities.Exercise", "Exercise")
+                        .WithMany("WorkoutItems")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FitnessTracker.Domain.Entities.Workout", "Workout")
+                        .WithMany("WorkoutItems")
+                        .HasForeignKey("WorkoutId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

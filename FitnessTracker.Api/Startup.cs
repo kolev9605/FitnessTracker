@@ -54,6 +54,14 @@ namespace FitnessTracker.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowCredentials()
+                           .AllowAnyHeader();
+                });
             }
             else
             {
@@ -63,6 +71,21 @@ namespace FitnessTracker.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            //app.UseSpa(spa =>
+            //{
+            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
+
+            //    spa.Options.SourcePath = "ClientApp";
+
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            //    }
+            //});
+
+
         }
 
         private void SetupJwt(IServiceCollection services)

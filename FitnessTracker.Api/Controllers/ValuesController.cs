@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnessTracker.Domain.Entities;
 using FitnessTracker.Persistance;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,10 +21,10 @@ namespace FitnessTracker.Api.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Exercise>> Get()
         {
-            var blogs = this.dbContext.Blogs.ToList();
-            return new string[] { "value1", "value2" };
+            var exercises = this.dbContext.Exercises.ToList();
+            return exercises;
         }
 
         // GET api/values/5

@@ -34,13 +34,6 @@ namespace FitnessTracker.Api.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet]
-        [Route("test")]
-        public async Task<int> Test()
-        {
-            return 1;
-        }
-
         [HttpPost]
         [Route("Login")]
         public async Task<string> Login([FromBody] LoginModel model)

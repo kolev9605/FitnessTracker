@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FitnessTracker.Persistance.Migrations
 {
-    public partial class Blogs : Migration
+    public partial class InitialSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,17 +55,31 @@ namespace FitnessTracker.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Blogs",
+                name: "Exercises",
                 schema: "public",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Url = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blogs", x => x.Id);
+                    table.PrimaryKey("PK_Exercises", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Workouts",
+                schema: "public",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,6 +199,37 @@ namespace FitnessTracker.Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WorkoutItems",
+                schema: "public",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    ExerciseId = table.Column<int>(nullable: false),
+                    Sets = table.Column<int>(nullable: false),
+                    Reps = table.Column<int>(nullable: false),
+                    WorkoutId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkoutItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkoutItems_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalSchema: "public",
+                        principalTable: "Exercises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkoutItems_Workouts_WorkoutId",
+                        column: x => x.WorkoutId,
+                        principalSchema: "public",
+                        principalTable: "Workouts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 schema: "public",
@@ -228,6 +273,18 @@ namespace FitnessTracker.Persistance.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkoutItems_ExerciseId",
+                schema: "public",
+                table: "WorkoutItems",
+                column: "ExerciseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkoutItems_WorkoutId",
+                schema: "public",
+                table: "WorkoutItems",
+                column: "WorkoutId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -253,7 +310,7 @@ namespace FitnessTracker.Persistance.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Blogs",
+                name: "WorkoutItems",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -262,6 +319,14 @@ namespace FitnessTracker.Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "Exercises",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "Workouts",
                 schema: "public");
         }
     }
