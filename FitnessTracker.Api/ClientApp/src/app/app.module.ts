@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card'
 
 import 'hammerjs';
 
@@ -42,7 +43,8 @@ import { RegisterComponent } from './components/auth/register/register.component
     FormsModule,
     HttpClientModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,20 +9,3 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-.content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-}
-
-.authForm {
-  padding-top: 20px;
-  grid-column: 2 / 3;
-  width: 100%;
-}
-
-.inputWrapper {
-  padding-bottom: 15px;
-  width: 100%;
-}
