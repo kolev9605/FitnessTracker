@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/helpers/errorStateMatcher';
+import { AuthService } from 'src/app/services/auth.service';
+import { RegisterModel } from 'src/app/models/auth/register.model';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +15,10 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
-  constructor() { }
+  constructor(
+    private authService: AuthService, 
+    private spinnerService: SpinnerService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -21,14 +28,23 @@ export class RegisterComponent implements OnInit {
         'confirmPassword': new FormControl(null, [Validators.required])
       }, this.passwordConfirming ),      
     });
-
-    this.registerForm.statusChanges.subscribe(() => {
-      console.log(this.registerForm);
-    })
   }
 
   onSubmit() {
-    console.log(this.registerForm);
+    this.spinnerService.show();
+    let registerModel: RegisterModel = {
+      email: this.registerForm.get('email').value,
+      password: this.registerForm.get('passwords.password').value,
+      confirmPassword: this.registerForm.get('passwords.confirmPassword').value
+    }
+
+    this.authService.register(registerModel).subscribe(result => {
+      this.spinnerService.hide();
+      this.notificationService.showSuccess("yey");
+    }, error => {
+      this.spinnerService.hide();
+      this.notificationService.showError(error);
+    });
   }
 
   passwordConfirming(c: FormControl): { [k: string]: boolean } {

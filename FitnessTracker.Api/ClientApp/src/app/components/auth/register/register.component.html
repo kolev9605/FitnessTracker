@@ -6,7 +6,7 @@
         <mat-form-field class="inputWrapper">
           <input formControlName="email" type="text" matInput placeholder="Email">
           <mat-error>
-            Please enter a valid email address
+            Email address is required
           </mat-error>
         </mat-form-field>
         <div formGroupName="passwords">
@@ -29,7 +29,7 @@
         </div>
         <div>
           <button [disabled]="!registerForm.valid" type="submit" mat-raised-button color="primary">
-            Submit</button>
+            Register</button>
           <a mat-button routerLink="/login">Log in</a>
         </div>
       </form>
