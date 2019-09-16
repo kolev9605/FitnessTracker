@@ -27,6 +27,12 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <mat-form-field class="inputWrapper">
+            <input formControlName="firstName" type="text" matInput placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field class="inputWrapper">
+            <input formControlName="lastName" type="text" matInput placeholder="Last Name">
+        </mat-form-field>
         <div>
           <button [disabled]="!registerForm.valid" type="submit" mat-raised-button color="primary">
             Submit</button>
