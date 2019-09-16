@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginModel } from 'src/app/models/auth/login.model';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +12,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private spinnerService: SpinnerService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -17,8 +24,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.loginForm);
-    this.loginForm.reset();
+  onSubmit() {    
+    this.spinnerService.show();
+    let loginModel: LoginModel = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    }
+
+    this.authService.login(loginModel).subscribe(result => {
+      this.spinnerService.hide();
+      this.notificationService.showSuccess("yey");
+    }, error => {
+      this.spinnerService.hide();
+      this.notificationService.showError(error);
+    });
   }
 }

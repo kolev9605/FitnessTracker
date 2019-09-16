@@ -1,4 +1,5 @@
-﻿using FitnessTracker.Application.Models.Account;
+﻿using FitnessTracker.Application.Exceptions;
+using FitnessTracker.Application.Models.Account;
 using FitnessTracker.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,7 @@ namespace FitnessTracker.Api.Controllers
 {
     [AllowAnonymous]
     [Route("api/Account")]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
@@ -36,7 +37,7 @@ namespace FitnessTracker.Api.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<string> Login([FromBody] LoginModel model)
+        public async Task<AuthenticationResultModel> Login([FromBody] LoginModel model)
         {
             var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
@@ -53,7 +54,7 @@ namespace FitnessTracker.Api.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<string> Register([FromBody] RegisterModel model)
+        public async Task<AuthenticationResultModel> Register([FromBody] RegisterModel model)
         {
             var applicationUser = new ApplicationUser
             {
@@ -67,14 +68,18 @@ namespace FitnessTracker.Api.Controllers
             {
                 await signInManager.SignInAsync(applicationUser, false);
                 var token = GenerateJwtToken(model.Email, applicationUser);
-
+                
                 return token;
+            }
+            else
+            {
+                throw new ValidationException(result.Errors.FirstOrDefault().Description);
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-        private string GenerateJwtToken(string email, ApplicationUser user)
+        private AuthenticationResultModel GenerateJwtToken(string email, ApplicationUser user)
         {
             var claims = new List<Claim>
             {
@@ -95,9 +100,18 @@ namespace FitnessTracker.Api.Controllers
                 signingCredentials: creds
             );
 
+
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-            return tokenString;
+            var authenticationResultModel = new AuthenticationResultModel()
+            {
+                Email = email,
+                Token = tokenString,
+                ExpirationDate = expires,
+                UserId = user.Id
+            };
+
+            return authenticationResultModel;
         }
     }
 }
