@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace FitnessTracker.Application.Models.Account
+namespace FitnessTracker.Application.Authentication.Commands.Register
 {
-    public class AuthenticationResultModel
+    public class RegisterResultModel
     {
         public string Email { get; set; }
 

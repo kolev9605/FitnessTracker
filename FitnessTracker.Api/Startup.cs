@@ -36,20 +36,17 @@ namespace FitnessTracker.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Add AutoMapper
             services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
-
-
-            //Add MediatR
-            services.AddMediatR(typeof(GetExercisesQueryHandler).GetTypeInfo().Assembly);
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
-
-            services.AddTransient<IJwtTokenService, JwtTokenService>();            
-
 
             //Add DbContext using PostgreSQL
             services.AddEntityFrameworkNpgsql()
-               .AddDbContext<IApplicationDbContext, ApplicationDbContext>()
+               .AddDbContext<ApplicationDbContext>()
                .BuildServiceProvider();
+
+            //instruct the DI to give the same instance for both types 
+            //https://stackoverflow.com/questions/52347535/register-aspnetcore-2-1-identity-system-with-dbcontext-interface
+            services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
             //Add identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -63,6 +60,12 @@ namespace FitnessTracker.Api
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //Add MediatR
+            services.AddMediatR(typeof(GetExercisesQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
 
             SetupJwt(services);
 

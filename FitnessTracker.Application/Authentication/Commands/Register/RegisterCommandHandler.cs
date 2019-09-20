@@ -3,18 +3,21 @@ using FitnessTracker.Application.Interfaces;
 using FitnessTracker.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FitnessTracker.Application.Authentication.Commands.Login
+namespace FitnessTracker.Application.Authentication.Commands.Register
 {
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResultModel>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterResultModel>
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IJwtTokenService _jwtTokenService;
 
-        public LoginCommandHandler(
+        public RegisterCommandHandler(
             UserManager<ApplicationUser> userManager,
             IJwtTokenService jwtTokenService)
         {
@@ -22,21 +25,21 @@ namespace FitnessTracker.Application.Authentication.Commands.Login
             _jwtTokenService = jwtTokenService;
         }
 
-        public async Task<LoginResultModel> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<RegisterResultModel> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var applicationUser = await _userManager.Users.FirstOrDefaultAsync(r => r.Email == request.Email);
-            if (applicationUser == null)
+            var applicationUser = new ApplicationUser
             {
-                throw new AuthenticationException($"User with email {request.Email} does not exist");
-            }
+                UserName = request.Email,
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName
+            };
 
-            var isPasswordValid = await _userManager.CheckPasswordAsync(applicationUser, request.Password);
-            //PasswordVerificationResult result = this._passwordHasher.VerifyHashedPassword(applicationUser, applicationUser.PasswordHash, request.Password);
-            if (isPasswordValid)
+            var result = await _userManager.CreateAsync(applicationUser, request.Password);
+            if (result.Succeeded)
             {
                 var jtwTokenCreationResultModel = _jwtTokenService.GenerateJwtToken(applicationUser.Email, applicationUser);
-
-                LoginResultModel loginResultModel = new LoginResultModel()
+                RegisterResultModel loginResultModel = new RegisterResultModel()
                 {
                     Email = jtwTokenCreationResultModel.Email,
                     ExpirationDate = jtwTokenCreationResultModel.ExpirationDate,
@@ -45,11 +48,10 @@ namespace FitnessTracker.Application.Authentication.Commands.Login
                 };
 
                 return loginResultModel;
-
             }
             else
             {
-                throw new AuthenticationException("Invalid password");
+                throw new AuthenticationException(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
         }
     }
