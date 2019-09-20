@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E6765955-73DF-41FE-80DB-19ACB0947C67}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Persistance", "FitnessTracker.Persistance\FitnessTracker.Persistance.csproj", "{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTracker.Api", "FitnessTracker.Api\FitnessTracker.Api.csproj", "{48A5E87B-223A-48C2-B827-C7787DBBED64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Infrastructure", "FitnessTracker.Infrastructure\FitnessTracker.Infrastructure.csproj", "{75EFA993-48D4-442A-BF86-B5B472C6804F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A5E87B-223A-48C2-B827-C7787DBBED64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75EFA993-48D4-442A-BF86-B5B472C6804F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75EFA993-48D4-442A-BF86-B5B472C6804F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75EFA993-48D4-442A-BF86-B5B472C6804F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75EFA993-48D4-442A-BF86-B5B472C6804F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{357A402F-8222-453A-94E0-5EA0DD3DE40D} = {E6765955-73DF-41FE-80DB-19ACB0947C67}
 		{5ACD37B1-1472-4DFD-9D89-839CA3DF2C17} = {50CD2221-663B-4368-8EDC-6E91E59A86D6}
 		{48A5E87B-223A-48C2-B827-C7787DBBED64} = {464C8AA8-12DC-490D-A87A-66DC7FBCECA3}
+		{75EFA993-48D4-442A-BF86-B5B472C6804F} = {50CD2221-663B-4368-8EDC-6E91E59A86D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B765FD2A-C14E-4BA2-A0FC-6C55B57A27E8}

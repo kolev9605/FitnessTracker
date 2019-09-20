@@ -10,12 +10,13 @@ namespace FitnessTracker.Api.MIddlewares
     public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate next;
+
         public ErrorHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task Invoke(HttpContext context)
         {
             try
             {

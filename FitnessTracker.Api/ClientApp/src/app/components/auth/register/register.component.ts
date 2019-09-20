@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
     let registerModel: RegisterModel = {
       email: this.registerForm.get('email').value,
       password: this.registerForm.get('passwords.password').value,
-      confirmPassword: this.registerForm.get('passwords.confirmPassword').value
+      confirmPassword: this.registerForm.get('passwords.confirmPassword').value,
+      firstName: this.registerForm.get('firstName').value,
+      lastName: this.registerForm.get('lastName').value
     }
 
     this.authService.register(registerModel).subscribe(result => {

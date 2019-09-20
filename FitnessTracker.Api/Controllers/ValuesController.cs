@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FitnessTracker.Domain.Entities;
-using FitnessTracker.Persistance;
+﻿using FitnessTracker.Application.Exercises.Queries.GetExercises;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FitnessTracker.Api.Controllers
 {
@@ -12,44 +9,19 @@ namespace FitnessTracker.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly IMediator _mediator;
 
-        public ValuesController(ApplicationDbContext dbContext)
+        public ValuesController(IMediator mediator)
         {
-            this.dbContext = dbContext;
+            _mediator = mediator;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Exercise>> Get()
+        public async Task<ActionResult<ExerciseListModel>> Get()
         {
-            var exercises = this.dbContext.Exercises.ToList();
-            return exercises;
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var res = await _mediator.Send(new GetExercisesQuery());
+            return res;
         }
     }
 }

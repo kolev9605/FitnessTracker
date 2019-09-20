@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using FitnessTracker.Api.MIddlewares;
+using FitnessTracker.Application.Exercises.Queries.GetExercises;
+using FitnessTracker.Application.Infrastructure;
+using FitnessTracker.Application.Infrastructure.AutoMapper;
 using FitnessTracker.Application.Interfaces;
 using FitnessTracker.Domain.Entities;
+using FitnessTracker.Infrastructure;
 using FitnessTracker.Persistance;
+using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
+using System.Text;
 
 namespace FitnessTracker.Api
 {
@@ -34,9 +36,19 @@ namespace FitnessTracker.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
+
+
+            //Add MediatR
+            services.AddMediatR(typeof(GetExercisesQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.AddTransient<IJwtTokenService, JwtTokenService>();            
+
+
             //Add DbContext using PostgreSQL
             services.AddEntityFrameworkNpgsql()
-               .AddDbContext<ApplicationDbContext>()
+               .AddDbContext<IApplicationDbContext, ApplicationDbContext>()
                .BuildServiceProvider();
 
             //Add identity
@@ -54,7 +66,10 @@ namespace FitnessTracker.Api
 
             SetupJwt(services);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GetExercisesQueryValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +92,8 @@ namespace FitnessTracker.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
