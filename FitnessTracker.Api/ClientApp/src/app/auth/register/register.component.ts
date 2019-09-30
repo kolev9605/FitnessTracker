@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MyErrorStateMatcher } from 'src/app/helpers/errorStateMatcher';
-import { AuthService } from 'src/app/services/auth.service';
-import { RegisterModel } from 'src/app/models/auth/register.model';
-import { SpinnerService } from 'src/app/services/spinner.service';
-import { NotificationService } from 'src/app/services/notification.service';
+import { MyErrorStateMatcher } from '../../shared/errorStateMatcher';
+import { AuthService } from '../shared/auth.service';
+import { RegisterModel } from '../shared/models/register.model';
+import { SpinnerService } from '../../shared/spinner.service';
+import { NotificationService } from '../../shared/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css', '../auth.css']
+  styleUrls: ['../shared/auth.css']
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private spinnerService: SpinnerService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -45,6 +47,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(registerModel).subscribe(result => {
       this.spinnerService.hide();
       this.notificationService.showSuccess("yey");
+      this.router.navigate(['/']);
     }, error => {
       this.spinnerService.hide();
       this.notificationService.showError(error);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ProgressSpinnerComponent } from '../components/shared/progress-spinner/progress-spinner.component';
+import { ProgressSpinnerComponent } from '../shared/progress-spinner/progress-spinner.component';
 
 @Injectable({
   providedIn: 'root'

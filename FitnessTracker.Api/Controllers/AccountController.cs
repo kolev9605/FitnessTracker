@@ -24,7 +24,7 @@ namespace FitnessTracker.Api.Controllers
         {
             var result = await _mediator.Send(model);
 
-            return result;
+            return Ok(result);
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace FitnessTracker.Api.Controllers
         {
             var result = await _mediator.Send(model);
 
-            return result;
+            return Ok(result);
         }
     }
 }

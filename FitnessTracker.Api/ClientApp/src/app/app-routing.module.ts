@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TestComponent } from './components/test/test.component';
-import { WorkoutComponent } from './components/workout/workout.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { WorkoutComponent } from './workout/workout/workout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthGuard } from './auth/shared/auth-guard';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: WorkoutComponent },
-  { path: 'test', component: TestComponent },
-  { path: 'workout', component: WorkoutComponent },
+  { path: '', component: HomeComponent },
+  { path: 'workout', component: WorkoutComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
 ];

@@ -1,0 +1,13 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Title + icon tbd</span>
+      <a mat-button routerLink="/">Home</a>
+      <a *ngIf="isAuthenticated" mat-button routerLink="/workout">Workout</a>
+      <span class="example-spacer"></span>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="/login">Log in</a>
+      <a *ngIf="!isAuthenticated" mat-button routerLink="/register">Register</a>
+      <a *ngIf="isAuthenticated" mat-button (click)="onLogout()">Logout</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

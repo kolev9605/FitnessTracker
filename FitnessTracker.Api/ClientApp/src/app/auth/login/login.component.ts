@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { LoginModel } from 'src/app/models/auth/login.model';
-import { SpinnerService } from 'src/app/services/spinner.service';
-import { NotificationService } from 'src/app/services/notification.service';
+import { AuthService } from '../shared/auth.service';
+import { LoginModel } from '../shared/models/login.model';
+import { SpinnerService } from '../../shared/spinner.service';
+import { NotificationService } from '../../shared/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', '../auth.css']
+  styleUrls: ['../shared/auth.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
     private authService: AuthService,
     private spinnerService: SpinnerService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginModel).subscribe(result => {
       this.spinnerService.hide();
+      this.router.navigate(['/']);
       this.notificationService.showSuccess("yey");
     }, error => {
       this.spinnerService.hide();
