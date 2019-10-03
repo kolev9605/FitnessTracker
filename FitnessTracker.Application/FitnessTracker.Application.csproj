@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FitnessTracker.Domain\FitnessTracker.Domain.csproj" />
+    <Compile Remove="Exercises\Commands\**" />
+    <EmbeddedResource Remove="Exercises\Commands\**" />
+    <None Remove="Exercises\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exercises\Commands\" />
+    <ProjectReference Include="..\FitnessTracker.Domain\FitnessTracker.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

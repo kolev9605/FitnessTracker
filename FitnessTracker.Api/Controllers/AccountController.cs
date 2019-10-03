@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FitnessTracker.Api.Controllers
 {
     [AllowAnonymous]
-    [Route("api/Account")]
+    [Route("api/[controller]")]
     public class AccountController : Controller
     {
         private readonly IMediator _mediator;
