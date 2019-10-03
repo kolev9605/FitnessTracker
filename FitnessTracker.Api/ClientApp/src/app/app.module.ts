@@ -5,14 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule }    from '@angular/platform-browser/animations';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { OverlayModule } from '@angular/cdk/overlay';
-
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -24,6 +16,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
 import { AuthInterceptor } from './auth/shared/auth.interceptor';
 import { HomeComponent } from './home/home.component';
+import { WorkoutListComponent } from './workout/workout-list/workout-list.component';
+import { MaterialUiModule } from './material-ui.module';
 
 @NgModule({
   declarations: [
@@ -34,22 +28,17 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     RegisterComponent,
     ProgressSpinnerComponent,
-    HomeComponent 
+    HomeComponent,
+    WorkoutListComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
     FormsModule,
     HttpClientModule,
-    MatInputModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    OverlayModule
+    MaterialUiModule
   ],
   providers: [
     {
