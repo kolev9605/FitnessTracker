@@ -12,10 +12,9 @@ export class WorkoutComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('https://localhost:5001/api/values/')
+    this.http.get('https://localhost:5001/api/workout/getall')
       .subscribe(data => {
-        this.data = data['exerciseModels'];
-        console.log(this.data);
+        console.log(data);
       })
   }
 

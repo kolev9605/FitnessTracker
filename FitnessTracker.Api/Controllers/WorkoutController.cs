@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FitnessTracker.Application.Workouts.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,10 +21,11 @@ namespace FitnessTracker.Api.Controllers
         }
 
         [HttpGet]
-        [Route("Login")]
-        public ActionResult Login()
+        [Route("GetAll")]
+        public async Task<ActionResult<WorkoutListModel>> GetAll()
         {
-            return Ok();
+            var result = await _mediator.Send(new GetWorkoutsQuery());
+            return Ok(result);
         }
     }
 }

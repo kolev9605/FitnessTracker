@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FitnessTracker.Application.Workout.Queries
+namespace FitnessTracker.Application.Workouts.Queries
 {
     public class WorkoutListModel
     {
+        public IEnumerable<WorkoutModel> Workouts { get; set; }
     }
 }
