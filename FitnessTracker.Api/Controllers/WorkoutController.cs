@@ -1,17 +1,14 @@
-﻿using FitnessTracker.Application.Workouts.Queries;
+﻿using FitnessTracker.Application.Workouts.Commands.AddWorkout;
+using FitnessTracker.Application.Workouts.Queries.GetWorkouts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FitnessTracker.Api.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
-    public class WorkoutController : Controller
+    public class WorkoutController : BaseController
     {
         private readonly IMediator _mediator;
 
@@ -21,11 +18,17 @@ namespace FitnessTracker.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
         public async Task<ActionResult<WorkoutListModel>> GetAll()
         {
             var result = await _mediator.Send(new GetWorkoutsQuery());
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Add([FromBody]AddWorkoutCommand addWorkoutCommand)
+        {
+            await _mediator.Send(addWorkoutCommand);
+            return NoContent();
         }
     }
 }

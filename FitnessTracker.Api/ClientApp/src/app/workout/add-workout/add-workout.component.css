@@ -1,0 +1,35 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.form {
+  grid-column: 2 / 5;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.inputWrapper {
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.items-input-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  gap: 10px;
+}
+
+.item-input {
+  width: 100%;
+}
+
+.add-item-button {
+  margin-bottom: 10px;
+}
+
+.submit-button {
+  margin-top: 10px;
+}

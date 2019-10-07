@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using FitnessTracker.Application.Exercises.Queries.GetExercises;
-using FitnessTracker.Application.Workouts.Queries;
+using FitnessTracker.Application.Workouts.Queries.GetWorkouts;
 using FitnessTracker.Domain.Entities;
-using System.Linq;
 
 namespace FitnessTracker.Application.Infrastructure.AutoMapper
 {

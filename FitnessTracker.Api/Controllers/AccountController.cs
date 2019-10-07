@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace FitnessTracker.Api.Controllers
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly IMediator _mediator;
 
@@ -19,7 +18,6 @@ namespace FitnessTracker.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Login")]
         public async Task<ActionResult<LoginResultModel>> Login([FromBody] LoginCommand model)
         {
             var result = await _mediator.Send(model);
@@ -28,7 +26,6 @@ namespace FitnessTracker.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Register")]
         public async Task<ActionResult<RegisterResultModel>> Register([FromBody] RegisterCommand model)
         {
             var result = await _mediator.Send(model);

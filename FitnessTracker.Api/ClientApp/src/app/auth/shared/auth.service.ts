@@ -10,6 +10,7 @@ import { LoginResponseModel } from './models/loginResponse.model';
 import { RegisterResponseModel } from './models/registerResponse.model';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { ErrorService } from 'src/app/shared/error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,10 @@ export class AuthService {
   private tokenExpirationTimer;
 
   public user: BehaviorSubject<UserModel>;
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(
+    private httpClient: HttpClient, 
+    private router: Router,
+    private errorService: ErrorService) {
     this.user = new BehaviorSubject<UserModel>(null);
   }
 
@@ -27,7 +31,7 @@ export class AuthService {
 
     return this.httpClient.post<RegisterResponseModel>(registerUrl, registerModel)
       .pipe(
-        catchError(this.handleError),
+        catchError(this.errorService.handleError),
         tap(responseModel => {
           this.handleAuthentication(responseModel);
         })
@@ -39,7 +43,7 @@ export class AuthService {
 
     return this.httpClient.post<LoginResponseModel>(loginUrl, loginModel)
       .pipe(
-        catchError(this.handleError),
+        catchError(this.errorService.handleError),
         tap(responseModel => {
           this.handleAuthentication(responseModel);
         })
@@ -92,17 +96,6 @@ export class AuthService {
     this.user.next(user);
     this.setupAutoLogoutTimer(responseModel.expirationDate);
     localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
-    let errorMessage;
-    if (!errorResponse.error || !errorResponse.error.errorMessage) {
-      errorMessage = 'Something went wrong :/';
-    } else {
-      errorMessage = errorResponse.error.errorMessage;
-    }
-
-    return throwError(errorMessage);
   }
 
   private setupAutoLogoutTimer(tokenExpirationDate: Date) {

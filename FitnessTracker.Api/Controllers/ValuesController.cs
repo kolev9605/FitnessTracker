@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace FitnessTracker.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class ValuesController : ControllerBase
+    public class ValuesController : BaseController
     {
         private readonly IMediator _mediator;
 

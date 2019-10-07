@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FitnessTracker.Application.Workouts.Queries
+namespace FitnessTracker.Application.Workouts.Queries.GetWorkouts
 {
     public class GetWorkoutsQueryHandler : IRequestHandler<GetWorkoutsQuery, WorkoutListModel>
     {
@@ -24,21 +24,6 @@ namespace FitnessTracker.Application.Workouts.Queries
 
         public async Task<WorkoutListModel> Handle(GetWorkoutsQuery request, CancellationToken cancellationToken)
         {
-            //var workouts = await _applicationDbContext.Workouts
-            //    .Select(w => new WorkoutModel
-            //    {
-            //        Id = w.Id,
-            //        Name = w.Name,
-            //        WorkoutItems = w.WorkoutItems.Select(wi => new WorkoutItemModel
-            //        {
-            //            Id =wi.Id,
-            //            ExerciseName = wi.Exercise.Name,
-            //            Reps = wi.Reps,
-            //            Sets = wi.Sets
-            //        }).ToList()
-            //    })
-            //    .ToListAsync(cancellationToken);
-
             var workouts = await _applicationDbContext.Workouts
                 .ProjectTo<WorkoutModel>(_mapper.ConfigurationProvider)
                 .ToListAsync();

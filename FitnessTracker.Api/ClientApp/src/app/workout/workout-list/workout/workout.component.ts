@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Workout } from '../../shared/models/workout.model';
 
 @Component({
   selector: 'app-workout',
@@ -7,15 +8,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./workout.component.css']
 })
 export class WorkoutComponent implements OnInit {
-  data;
+  @Input() workout: Workout;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('https://localhost:5001/api/workout/getall')
-      .subscribe(data => {
-        console.log(data);
-      })
   }
 
 }

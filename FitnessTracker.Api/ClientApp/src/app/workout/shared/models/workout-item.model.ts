@@ -1,8 +1,5 @@
-import { Exercise } from './exercise.model';
-
 export class WorkoutItem {
-    public exercise: Exercise;
-    public restInterval: number;
+    public exerciseName: string;
     public sets: number;
-    public repetitions: number;
+    public reps: number;
 }

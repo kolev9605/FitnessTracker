@@ -6,7 +6,7 @@ namespace FitnessTracker.Application.Exercises.Queries.GetExercises
     {
         public GetExercisesQueryValidator()
         {
-            //RuleFor(x => x.Id).LessThan(10);
+            //RuleFor(x => x.Number).LessThan(10);
         }
     }
 }
