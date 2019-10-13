@@ -6,6 +6,6 @@ namespace FitnessTracker.Application.Exercises.Queries.GetExercises
 {
     public class ExerciseListModel
     {
-        public IEnumerable<ExerciseModel> ExerciseModels { get; set; }
+        public IEnumerable<ExerciseModel> Exercises { get; set; }
     }
 }

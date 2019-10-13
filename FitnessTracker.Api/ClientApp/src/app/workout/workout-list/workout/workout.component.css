@@ -1,0 +1,22 @@
+.workout-tile {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.tile-content {
+  grid-column: 1 / 3;
+}
+
+.start-button {
+  grid-column: 3 / 4;
+}
+
+.edit-button {
+  grid-column: 4 / 5;
+}
+
+.delete-button {
+  grid-column: 5 / 6;
+}

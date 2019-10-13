@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FitnessTracker.Api.MIddlewares;
+using FitnessTracker.Application.Authentication.Commands.Login;
 using FitnessTracker.Application.Exercises.Queries.GetExercises;
 using FitnessTracker.Application.Infrastructure;
 using FitnessTracker.Application.Infrastructure.AutoMapper;
@@ -75,7 +76,7 @@ namespace FitnessTracker.Api
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GetExercisesQueryValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>());
 
             services.AddSwaggerGen(c =>
             {
@@ -121,11 +122,14 @@ namespace FitnessTracker.Api
             }
 
             app.UseAuthentication();
-
             app.UseHttpsRedirection();
-
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
 
             //app.UseSpa(spa =>
             //{

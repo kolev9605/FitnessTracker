@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Application.Workouts.Commands.AddWorkout;
+using FitnessTracker.Application.Workouts.Commands.DeleteWorkout;
 using FitnessTracker.Application.Workouts.Queries.GetWorkouts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 namespace FitnessTracker.Api.Controllers
 {
     [Authorize]
-    public class WorkoutController : BaseController
+    public class WorkoutsController : BaseController
     {
         private readonly IMediator _mediator;
 
-        public WorkoutController(IMediator mediator)
+        public WorkoutsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -28,6 +29,13 @@ namespace FitnessTracker.Api.Controllers
         public async Task<ActionResult> Add([FromBody]AddWorkoutCommand addWorkoutCommand)
         {
             await _mediator.Send(addWorkoutCommand);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(DeleteWorkoutCommand deleteWorkoutCommand)
+        {
+            await _mediator.Send(deleteWorkoutCommand);
             return NoContent();
         }
     }

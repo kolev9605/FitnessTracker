@@ -1,5 +1,5 @@
 export class WorkoutItem {
-    public exerciseName: string;
+    public exerciseId: number;
     public sets: number;
     public reps: number;
 }

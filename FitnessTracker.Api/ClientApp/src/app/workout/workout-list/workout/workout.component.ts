@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Workout } from '../../shared/models/workout.model';
 
 @Component({
@@ -9,10 +8,22 @@ import { Workout } from '../../shared/models/workout.model';
 })
 export class WorkoutComponent implements OnInit {
   @Input() workout: Workout;
+  @Output() workoutDeleted = new EventEmitter<Workout>();
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
+  onDelete() {
+    this.workoutDeleted.emit(this.workout);
+  }
+
+  onEdit() {
+    console.log('edit')
+  }
+
+  onStart() {
+    console.log('start')
+  }
 }

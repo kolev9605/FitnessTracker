@@ -1,7 +1,7 @@
-<div>
+<header class="sticky">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>Title + icon tbd</span>
+      <h1>Fitness Tracker</h1>
       <a mat-button routerLink="/">Home</a>
       <a *ngIf="isAuthenticated" mat-button routerLink="/workouts">Workouts</a>
       <span class="example-spacer"></span>
@@ -10,4 +10,4 @@
       <a *ngIf="isAuthenticated" mat-button (click)="onLogout()">Logout</a>
     </mat-toolbar-row>
   </mat-toolbar>
-</div>
+</header>

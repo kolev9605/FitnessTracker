@@ -1,6 +1,5 @@
 ﻿using FitnessTracker.Application.Exercises.Queries.GetExercises;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -15,10 +14,9 @@ namespace FitnessTracker.Api.Controllers
         {
             _mediator = mediator;
         }
-
-        // GET api/values
+        
         [HttpGet]
-        public async Task<ActionResult<ExerciseListModel>> Get()
+        public async Task<ActionResult<ExerciseListModel>> Index()
         {
             var res = await _mediator.Send(new GetExercisesQuery());
             return res;

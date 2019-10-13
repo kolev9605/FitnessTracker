@@ -26,7 +26,7 @@ namespace FitnessTracker.Application.Exercises.Queries.GetExercises
         {
             var model = new ExerciseListModel();
 
-            model.ExerciseModels = await _applicationDbContext
+            model.Exercises = await _applicationDbContext
                 .Exercises.ProjectTo<ExerciseModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
