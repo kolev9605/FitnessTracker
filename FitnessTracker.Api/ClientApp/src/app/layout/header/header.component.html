@@ -2,7 +2,6 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <h1>Fitness Tracker</h1>
-      <a mat-button routerLink="/">Home</a>
       <a *ngIf="isAuthenticated" mat-button routerLink="/workouts">Workouts</a>
       <span class="example-spacer"></span>
       <a *ngIf="!isAuthenticated" mat-button routerLink="/login">Log in</a>

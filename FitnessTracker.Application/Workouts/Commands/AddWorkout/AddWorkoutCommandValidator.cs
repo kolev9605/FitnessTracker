@@ -13,7 +13,8 @@ namespace FitnessTracker.Application.Workouts.Commands.AddWorkout
 
             RuleFor(x => x.WorkoutItems)
                 .NotNull()
-                .Must(x => x.Any());
+                .Must(x => x.Any())
+                .WithMessage("There must be at least one exercise");
 
             RuleForEach(x => x.WorkoutItems)
                 .Must(x => x.ExerciseId != 0)

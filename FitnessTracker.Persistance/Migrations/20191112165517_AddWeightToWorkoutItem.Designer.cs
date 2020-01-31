@@ -3,15 +3,17 @@ using System;
 using FitnessTracker.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FitnessTracker.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191112165517_AddWeightToWorkoutItem")]
+    partial class AddWeightToWorkoutItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,86 +87,6 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Exercises");
-                });
-
-            modelBuilder.Entity("FitnessTracker.Domain.Entities.ExerciseMuscleGroup", b =>
-                {
-                    b.Property<int>("ExerciseId");
-
-                    b.Property<int>("MuscleGroupId");
-
-                    b.Property<int>("MoverType");
-
-                    b.HasKey("ExerciseId", "MuscleGroupId");
-
-                    b.HasIndex("MuscleGroupId");
-
-                    b.ToTable("ExerciseMuscleGroups");
-                });
-
-            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("MuscleGroupTypeId");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<string>("ScientificName")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MuscleGroupTypeId");
-
-                    b.ToTable("MuscleGroups");
-                });
-
-            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroupType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MuscleGroupTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Back"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Chest"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Abs"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Shoulders"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Arms"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Legs"
-                        });
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.Workout", b =>
@@ -309,27 +231,6 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("FitnessTracker.Domain.Entities.ExerciseMuscleGroup", b =>
-                {
-                    b.HasOne("FitnessTracker.Domain.Entities.Exercise", "Exercise")
-                        .WithMany("ExerciseMuscleGroups")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FitnessTracker.Domain.Entities.MuscleGroup", "MuscleGroup")
-                        .WithMany("ExerciseMuscleGroups")
-                        .HasForeignKey("MuscleGroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroup", b =>
-                {
-                    b.HasOne("FitnessTracker.Domain.Entities.MuscleGroupType", "MuscleGroupType")
-                        .WithMany("MuscleGroups")
-                        .HasForeignKey("MuscleGroupTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.WorkoutItem", b =>

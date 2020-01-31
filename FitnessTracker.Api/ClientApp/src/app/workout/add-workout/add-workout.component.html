@@ -4,13 +4,19 @@
       <mat-card-content>
         <form [formGroup]="addWorkoutForm" (ngSubmit)="onSubmit()">
 
-          <mat-form-field class="inputWrapper">
+          <mat-form-field class="input-wrapper">
             <input formControlName="name" type="text" matInput placeholder="Name">
           </mat-form-field>
 
           <div formArrayName="workoutItems" 
             *ngFor="let item of addWorkoutForm.get('workoutItems').controls; let i = index;">
             <div [formGroupName]="i" class="items-input-content">
+              <mat-form-field class='item-input exercise-dropdown'>
+                <mat-label>Muscle Group</mat-label>
+                  <mat-select matInput>
+                </mat-select>
+              </mat-form-field>
+              
               <mat-form-field class='item-input exercise-dropdown'>
                 <mat-label>Exercise</mat-label>
                 <mat-select formControlName="exerciseId" matInput>
@@ -20,15 +26,24 @@
                 </mat-select>
               </mat-form-field>
 
-              <mat-form-field class='item-input exercise-sets'>
+              <mat-form-field class='item-input'>
                 <input formControlName="sets" matInput placeholder="Sets" type="number">
               </mat-form-field>
-              
-              <mat-form-field class='item-input exercise-reps'>
+
+              <mat-form-field class='item-input'>
                 <input formControlName="reps" matInput placeholder="Reps" type="number">
               </mat-form-field>
-              <button mat-button (click)="removeItem(i)" class="clear-item">
+
+              <span class="clear-item">
                 <mat-icon>clear</mat-icon>
+              </span>
+
+              <mat-form-field class='item-input'>
+                <input formControlName="weight" matInput placeholder="Weight" type="number">
+              </mat-form-field>
+
+              <button mat-button (click)="removeItem(i)" class="clear-item">
+                <mat-icon>delete</mat-icon>
               </button>
             </div>
           </div>

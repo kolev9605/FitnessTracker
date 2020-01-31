@@ -15,7 +15,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
 import { AuthInterceptor } from './auth/shared/auth.interceptor';
-import { HomeComponent } from './home/home.component';
 import { WorkoutListComponent } from './workout/workout-list/workout-list.component';
 import { MaterialUiModule } from './material-ui.module';
 import { AddWorkoutComponent } from './workout/add-workout/add-workout.component';
@@ -29,7 +28,6 @@ import { AddWorkoutComponent } from './workout/add-workout/add-workout.component
     LoginComponent,
     RegisterComponent,
     ProgressSpinnerComponent,
-    HomeComponent,
     WorkoutListComponent,
     AddWorkoutComponent
   ],

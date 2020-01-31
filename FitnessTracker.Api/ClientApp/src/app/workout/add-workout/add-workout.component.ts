@@ -46,7 +46,8 @@ export class AddWorkoutComponent implements OnInit {
     return this.formBuilder.group({
       exerciseId: [null, Validators.required],
       reps: [null, [Validators.required, Validators.min(0)]],
-      sets: [null, [Validators.required, Validators.min(0)]]
+      sets: [null, [Validators.required, Validators.min(0)]],
+      weight: [null, [Validators.required, Validators.min(0)]]
     });
   }
 

@@ -3,15 +3,17 @@ using System;
 using FitnessTracker.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FitnessTracker.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191114162903_MuscleGroups")]
+    partial class MuscleGroups
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,38 +135,6 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MuscleGroupTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Back"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Chest"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Abs"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Shoulders"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Arms"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Legs"
-                        });
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.Workout", b =>

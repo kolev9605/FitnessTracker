@@ -27,7 +27,8 @@ namespace FitnessTracker.Application.Workouts.Commands.AddWorkout
                 {
                     ExerciseId = x.ExerciseId,
                     Reps = x.Reps,
-                    Sets = x.Sets
+                    Sets = x.Sets,
+                    Weight = x.Weight
                 }).ToList()
             };
 

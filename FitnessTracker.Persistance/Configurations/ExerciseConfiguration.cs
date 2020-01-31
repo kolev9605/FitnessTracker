@@ -8,8 +8,7 @@ namespace FitnessTracker.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Exercise> builder)
         {
-            builder
-                .HasMany(e => e.WorkoutItems)
+            builder.HasMany(e => e.WorkoutItems)
                 .WithOne(wi => wi.Exercise);
 
             builder.Property(e => e.Name)

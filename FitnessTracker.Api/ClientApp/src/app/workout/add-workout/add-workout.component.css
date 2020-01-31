@@ -1,31 +1,31 @@
+
+/* form wrapper */
 .content {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .form {
   grid-column: 2 / 5;
-  width: 100%;
-}
-
-.inputWrapper {
-  padding-bottom: 15px;
-  width: 100%;
 }
 
 .items-input-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  grid-template-columns: 
+    minmax(40px, 4fr) 
+    minmax(40px, 4fr) 
+    minmax(30px, 3fr) 
+    minmax(30px, 3fr) 
+    minmax(30px, 1fr) 
+    minmax(30px, 3fr) 
+    minmax(30px, 1fr);
   justify-items: center;
+  align-items: center;
   gap: 10px;
   border-bottom: 0.5px solid #D3D3D3;
   margin-bottom: 10px;
-}
-
-.item-input {
-  width: 100%;
 }
 
 .buttons-content {
@@ -34,10 +34,26 @@
   gap: 10px;
 }
 
+.input-wrapper {
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+.item-input {
+  width: 100%;
+}
+
+
 @media only screen and (max-width: 768px) {
   .buttons-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
+  }
+
+  .content {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
