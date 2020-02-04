@@ -133,38 +133,6 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MuscleGroupTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Back"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Chest"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Abs"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Shoulders"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Arms"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Legs"
-                        });
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.Workout", b =>
