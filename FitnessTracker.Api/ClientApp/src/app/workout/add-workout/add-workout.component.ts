@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { WorkoutService } from '../shared/workout.service';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { ExerciseList } from '../shared/models/exercise-list.model';
-import { Workout } from '../shared/models/workout.model';
 import { Router } from '@angular/router';
 import { SpinnerService } from 'src/app/shared/spinner.service';
 import { AddWorkout } from '../shared/models/add-workout.model';
+import { MuscleGroupList } from '../shared/models/muscle-group-list.model';
 
 @Component({
   selector: 'app-add-workout',
@@ -17,6 +17,7 @@ export class AddWorkoutComponent implements OnInit {
   addWorkoutForm: FormGroup;
   workoutItems: FormArray;
   exerciseList: ExerciseList = new ExerciseList();
+  muscleGroupList: MuscleGroupList = new MuscleGroupList();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,6 +32,15 @@ export class AddWorkoutComponent implements OnInit {
       .subscribe(response => {
         this.spinnerService.hide();
         this.exerciseList = response;
+      }, error => {
+        this.spinnerService.hide();
+        this.notificationService.showError(error);
+      });
+
+      this.workoutService.getMuscleGroups()
+      .subscribe(response => {
+        this.spinnerService.hide();
+        this.muscleGroupList = response;
       }, error => {
         this.spinnerService.hide();
         this.notificationService.showError(error);

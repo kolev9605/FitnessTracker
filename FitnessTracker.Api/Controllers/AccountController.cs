@@ -1,5 +1,5 @@
-﻿using FitnessTracker.Application.Authentication.Commands.Login;
-using FitnessTracker.Application.Authentication.Commands.Register;
+﻿using FitnessTracker.Application.CQRS.Authentication.Commands.Login;
+using FitnessTracker.Application.CQRS.Authentication.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

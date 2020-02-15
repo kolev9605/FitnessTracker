@@ -13,7 +13,10 @@
             <div [formGroupName]="i" class="items-input-content">
               <mat-form-field class='item-input exercise-dropdown'>
                 <mat-label>Muscle Group</mat-label>
-                  <mat-select matInput>
+                  <mat-select formControlName="muscleGroupId" matInput>
+                  <mat-option *ngFor="let muscleGroup of muscleGroupList.muscleGroups" [value]="muscleGroup.id">
+                    {{muscleGroup.name}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
               

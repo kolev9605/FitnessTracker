@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Exercises\Commands\**" />
-    <EmbeddedResource Remove="Exercises\Commands\**" />
-    <None Remove="Exercises\Commands\**" />
+    <Compile Remove="CQRS\Exercises\Commands\**" />
+    <EmbeddedResource Remove="CQRS\Exercises\Commands\**" />
+    <None Remove="CQRS\Exercises\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>

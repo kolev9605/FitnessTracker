@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { ErrorService } from 'src/app/shared/error.service';
 import { ExerciseList } from './models/exercise-list.model';
 import { AddWorkout } from './models/add-workout.model';
+import { MuscleGroupList } from './models/muscle-group-list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class WorkoutService {
 
   getExercises() {
     return this.http.get<ExerciseList>('https://localhost:5001/api/exercises/getall')
+      .pipe(catchError(this.errorService.handleError));
+  }
+
+  getMuscleGroups() {
+    return this.http.get<MuscleGroupList>('https://localhost:5001/api/exercises/getMuscleGroups')
       .pipe(catchError(this.errorService.handleError));
   }
 

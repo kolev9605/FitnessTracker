@@ -10,16 +10,15 @@ namespace FitnessTracker.Persistance
     {
         public DbSet<Exercise> Exercises { get; set; }
 
+        public DbSet<Workout> Workouts { get; set; }
+
+        public DbSet<WorkoutItem> WorkoutItems { get; set; }
+
         public DbSet<ExerciseMuscleGroup> ExerciseMuscleGroups { get; set; }
 
         public DbSet<MuscleGroup> MuscleGroups { get; set; }
 
         public DbSet<MuscleGroupType> MuscleGroupTypes { get; set; }
-
-        public DbSet<Workout> Workouts { get; set; }
-
-        public DbSet<WorkoutItem> WorkoutItems { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

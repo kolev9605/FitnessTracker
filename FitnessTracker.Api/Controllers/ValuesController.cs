@@ -1,4 +1,5 @@
-﻿using FitnessTracker.Application.Exercises.Queries.GetExercises;
+﻿using FitnessTracker.Application.CQRS.Exercises.Queries.GetExercises;
+using FitnessTracker.Application.CQRS.Exercises.Queries.GetMuscleGroups;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -16,9 +17,9 @@ namespace FitnessTracker.Api.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<ExerciseListModel>> Index()
+        public async Task<ActionResult<MuscleGroupsListModel>> Index()
         {
-            var res = await _mediator.Send(new GetExercisesQuery());
+            var res = await _mediator.Send(new GetMuscleGroupsQuery());
             return res;
         }
     }

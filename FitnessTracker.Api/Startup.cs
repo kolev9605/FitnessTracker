@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FitnessTracker.Api.MIddlewares;
-using FitnessTracker.Application.Authentication.Commands.Login;
-using FitnessTracker.Application.Exercises.Queries.GetExercises;
+using FitnessTracker.Application.CQRS.Authentication.Commands.Login;
+using FitnessTracker.Application.CQRS.Exercises.Queries.GetExercises;
 using FitnessTracker.Application.Infrastructure;
 using FitnessTracker.Application.Infrastructure.AutoMapper;
 using FitnessTracker.Application.Interfaces;

@@ -1,6 +1,6 @@
-﻿using FitnessTracker.Application.Workouts.Commands.AddWorkout;
-using FitnessTracker.Application.Workouts.Commands.DeleteWorkout;
-using FitnessTracker.Application.Workouts.Queries.GetWorkouts;
+﻿using FitnessTracker.Application.CQRS.Workouts.Commands.AddWorkout;
+using FitnessTracker.Application.CQRS.Workouts.Commands.DeleteWorkout;
+using FitnessTracker.Application.CQRS.Workouts.Queries.GetWorkouts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
