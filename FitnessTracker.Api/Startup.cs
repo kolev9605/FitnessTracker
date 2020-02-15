@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -73,62 +73,70 @@ namespace FitnessTracker.Api
 
             SetupJwt(services);
 
-            services
-                .AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            services.AddRazorPages()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>());
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Version = "v1",
-                    Title = "Test API",
-                    Description = "ASP.NET Core Web API"
-                });
-                c.AddSecurityDefinition("Bearer",
-                       new ApiKeyScheme
-                       {
-                           In = "header",
-                           Name = "Authorization",
-                           Type = "apiKey"
-                       });
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-                {
-                    { "Bearer", Enumerable.Empty<string>() },
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info
+            //    {
+            //        Version = "v1",
+            //        Title = "Test API",
+            //        Description = "ASP.NET Core Web API"
+            //    });
+            //    c.AddSecurityDefinition("Bearer",
+            //           new ApiKeyScheme
+            //           {
+            //               In = "header",
+            //               Name = "Authorization",
+            //               Type = "apiKey"
+            //           });
+            //    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+            //    {
+            //        { "Bearer", Enumerable.Empty<string>() },
+            //    });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            app.UseCors("CorsPolicy");
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
 
-                app.UseCors(builder =>
-                {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowCredentials()
-                           .AllowAnyHeader();
-                });
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //    app.UseCors("CorsPolicy");
+            //}
+            //else
+            //{
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-            app.UseMvc(routes =>
+
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             //app.UseSpa(spa =>
