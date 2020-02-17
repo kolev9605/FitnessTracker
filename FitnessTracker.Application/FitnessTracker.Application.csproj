@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CQRS\Exercises\Commands\**" />
-    <EmbeddedResource Remove="CQRS\Exercises\Commands\**" />
-    <None Remove="CQRS\Exercises\Commands\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FitnessTracker.Domain\FitnessTracker.Domain.csproj" />
   </ItemGroup>
 
