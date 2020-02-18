@@ -1,12 +1,12 @@
-﻿using FitnessTracker.Application.CQRS.Exercises.Queries.GetExercises;
-using FitnessTracker.Application.CQRS.Exercises.Queries.GetMuscleGroups;
+﻿using FitnessTracker.Application.CQRS.Exercises.Queries.GetMuscleGroups;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace FitnessTracker.Api.Controllers
 {
-    [ApiController]
+    [AllowAnonymous]
     public class ValuesController : BaseController
     {
         private readonly IMediator _mediator;

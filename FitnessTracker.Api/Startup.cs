@@ -12,6 +12,7 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -43,8 +44,7 @@ namespace FitnessTracker.Api
 
             //Add DbContext using PostgreSQL
             services.AddEntityFrameworkNpgsql()
-               .AddDbContext<ApplicationDbContext>()
-               .BuildServiceProvider();
+               .AddDbContext<ApplicationDbContext>();
 
             //instruct the DI to give the same instance for both types 
             //https://stackoverflow.com/questions/52347535/register-aspnetcore-2-1-identity-system-with-dbcontext-interface
@@ -52,14 +52,14 @@ namespace FitnessTracker.Api
 
             //Add identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-            })
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequiredUniqueChars = 0;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -71,7 +71,7 @@ namespace FitnessTracker.Api
 
             SetupJwt(services);
 
-            services.AddRazorPages()
+            services.AddControllers()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>());
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -88,26 +88,10 @@ namespace FitnessTracker.Api
                     .AllowAnyHeader());
             });
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new Info
-            //    {
-            //        Version = "v1",
-            //        Title = "Test API",
-            //        Description = "ASP.NET Core Web API"
-            //    });
-            //    c.AddSecurityDefinition("Bearer",
-            //           new ApiKeyScheme
-            //           {
-            //               In = "header",
-            //               Name = "Authorization",
-            //               Type = "apiKey"
-            //           });
-            //    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-            //    {
-            //        { "Bearer", Enumerable.Empty<string>() },
-            //    });
-            //});
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,7 +100,6 @@ namespace FitnessTracker.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
                 app.UseCors("CorsPolicy");
             }
             else
@@ -125,34 +108,25 @@ namespace FitnessTracker.Api
                 app.UseHsts();
             }
 
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
-
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-            });
-
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            //    }
-            //});
-
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+                endpoints.MapControllers();
             });
         }
 
