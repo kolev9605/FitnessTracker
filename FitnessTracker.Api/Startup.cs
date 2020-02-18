@@ -119,11 +119,17 @@ namespace FitnessTracker.Api
             });
 
             app.UseAuthentication();
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
             app.UseRouting();
+
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
