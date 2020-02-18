@@ -6,6 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatListModule } from '@angular/material/list'
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -15,7 +18,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatInputModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    MatListModule,
+    MatSelectModule,
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -24,7 +30,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
     MatInputModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    MatListModule,
+    MatSelectModule,
+    MatSidenavModule
   ]
 })
 export class MaterialUiModule {}

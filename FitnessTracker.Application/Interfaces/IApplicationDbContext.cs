@@ -13,6 +13,12 @@ namespace FitnessTracker.Application.Interfaces
 
         DbSet<WorkoutItem> WorkoutItems { get; set; }
 
+        DbSet<ExerciseMuscleGroup> ExerciseMuscleGroups { get; set; }
+
+        DbSet<MuscleGroup> MuscleGroups { get; set; }
+
+        DbSet<MuscleGroupType> MuscleGroupTypes { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

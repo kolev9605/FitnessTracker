@@ -85,6 +85,974 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Exercises");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Bench Press"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Incline Bench Press"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Decline Bench Press"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Close-Grip Bench Press"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Dumbbell Bench Press"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Dumbbell Incline Bench Press"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Barbell Bent-Over Rows"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "One-Arm Dumbbell Rows"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Lat Pulldowns"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Seated Rows"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Hyperextensions"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Military Shoulder Press"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Dumbbell Military Shoulder Seated Press"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Lateral Raises"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Bent-Over Lateral Raises"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Face pulls"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Skull Crushers"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Cable Rope Triceps Pushdown"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Hammer Curls"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Dumbbell Incline Curls"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Reverse Barbell Curls"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Wrist Curls"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Reverse Wrist Curls"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Squats"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Dumbbell Lunges"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Leg extensions"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Lying Leg Curls"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "Seated Calf Raise"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Leg Press"
+                        });
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.ExerciseMuscleGroup", b =>
+                {
+                    b.Property<int>("ExerciseId");
+
+                    b.Property<int>("MuscleGroupId");
+
+                    b.Property<int>("MoverType");
+
+                    b.HasKey("ExerciseId", "MuscleGroupId");
+
+                    b.HasIndex("MuscleGroupId");
+
+                    b.ToTable("ExerciseMuscleGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 5,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 6,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 11,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 1,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 5,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 6,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 11,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 6,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 5,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 11,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 1,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 5,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 6,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 4,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 5,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 6,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 11,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 5,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 5,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 6,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 8,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 11,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 6,
+                            MuscleGroupId = 12,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 2,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 3,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 10,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 5,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 7,
+                            MuscleGroupId = 6,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 2,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 3,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 10,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 5,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 8,
+                            MuscleGroupId = 6,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 3,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 2,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 10,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 1,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 11,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 5,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 9,
+                            MuscleGroupId = 6,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 2,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 3,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 10,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 5,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 10,
+                            MuscleGroupId = 6,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 11,
+                            MuscleGroupId = 4,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 11,
+                            MuscleGroupId = 14,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 11,
+                            MuscleGroupId = 16,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 11,
+                            MuscleGroupId = 7,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 11,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 8,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 5,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 6,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 10,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 17,
+                            MuscleGroupId = 3,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 18,
+                            MuscleGroupId = 11,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 18,
+                            MuscleGroupId = 13,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 18,
+                            MuscleGroupId = 3,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 19,
+                            MuscleGroupId = 13,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 19,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 19,
+                            MuscleGroupId = 8,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 19,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 20,
+                            MuscleGroupId = 12,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 20,
+                            MuscleGroupId = 13,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 20,
+                            MuscleGroupId = 8,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 20,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 21,
+                            MuscleGroupId = 13,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 21,
+                            MuscleGroupId = 12,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 21,
+                            MuscleGroupId = 8,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 21,
+                            MuscleGroupId = 1,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 22,
+                            MuscleGroupId = 13,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 23,
+                            MuscleGroupId = 13,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 15,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 14,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 16,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 17,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 7,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 24,
+                            MuscleGroupId = 4,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 25,
+                            MuscleGroupId = 15,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 25,
+                            MuscleGroupId = 14,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 25,
+                            MuscleGroupId = 16,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 25,
+                            MuscleGroupId = 17,
+                            MoverType = 3
+                        },
+                        new
+                        {
+                            ExerciseId = 26,
+                            MuscleGroupId = 15,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 27,
+                            MuscleGroupId = 16,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 28,
+                            MuscleGroupId = 17,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 29,
+                            MuscleGroupId = 15,
+                            MoverType = 0
+                        },
+                        new
+                        {
+                            ExerciseId = 29,
+                            MuscleGroupId = 14,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 29,
+                            MuscleGroupId = 16,
+                            MoverType = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 29,
+                            MuscleGroupId = 17,
+                            MoverType = 3
+                        });
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("MuscleGroupTypeId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("ScientificName")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MuscleGroupTypeId");
+
+                    b.ToTable("MuscleGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MuscleGroupTypeId = 1,
+                            Name = "Traps",
+                            ScientificName = "Trapezius"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MuscleGroupTypeId = 1,
+                            Name = "Middle Back",
+                            ScientificName = "Rhomboids"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MuscleGroupTypeId = 1,
+                            Name = "Lats",
+                            ScientificName = "Latissimus Dorsi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MuscleGroupTypeId = 1,
+                            Name = "Lower Back",
+                            ScientificName = "Erector Spinae"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MuscleGroupTypeId = 2,
+                            Name = "Upper Chest",
+                            ScientificName = "Pectoralis Major"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MuscleGroupTypeId = 2,
+                            Name = "Lower Chest",
+                            ScientificName = "Pectoralis Minor"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            MuscleGroupTypeId = 3,
+                            Name = "Abs",
+                            ScientificName = "Rectus Abdominis, Obliques"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            MuscleGroupTypeId = 4,
+                            Name = "Front Delts",
+                            ScientificName = "Front Deltoids"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            MuscleGroupTypeId = 4,
+                            Name = "Side Delts",
+                            ScientificName = "Side Deltoids"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            MuscleGroupTypeId = 4,
+                            Name = "Rear Delts",
+                            ScientificName = "Rear Deltoids"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            MuscleGroupTypeId = 5,
+                            Name = "Triceps",
+                            ScientificName = "Triceps Brachii"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            MuscleGroupTypeId = 5,
+                            Name = "Biceps",
+                            ScientificName = "Biceps Brachii"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            MuscleGroupTypeId = 5,
+                            Name = "Forearms",
+                            ScientificName = "Brachioradialis, Wrist Flexors, Wrist Extensors"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            MuscleGroupTypeId = 6,
+                            Name = "Glutes",
+                            ScientificName = "Gluteus Maximas"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            MuscleGroupTypeId = 6,
+                            Name = "Quadriceps",
+                            ScientificName = "Quadriceps"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            MuscleGroupTypeId = 6,
+                            Name = "Hamstrings",
+                            ScientificName = "Hamstrings"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            MuscleGroupTypeId = 6,
+                            Name = "Calves",
+                            ScientificName = "Gastrocnemius, Soleus"
+                        });
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroupType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MuscleGroupTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Back"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Chest"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Abs"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Shoulders"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Arms"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Legs"
+                        });
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.Workout", b =>
@@ -110,6 +1078,8 @@ namespace FitnessTracker.Persistance.Migrations
                     b.Property<int>("Reps");
 
                     b.Property<int>("Sets");
+
+                    b.Property<int>("Weight");
 
                     b.Property<int>("WorkoutId");
 
@@ -227,6 +1197,27 @@ namespace FitnessTracker.Persistance.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.ExerciseMuscleGroup", b =>
+                {
+                    b.HasOne("FitnessTracker.Domain.Entities.Exercise", "Exercise")
+                        .WithMany("ExerciseMuscleGroups")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FitnessTracker.Domain.Entities.MuscleGroup", "MuscleGroup")
+                        .WithMany("ExerciseMuscleGroups")
+                        .HasForeignKey("MuscleGroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FitnessTracker.Domain.Entities.MuscleGroup", b =>
+                {
+                    b.HasOne("FitnessTracker.Domain.Entities.MuscleGroupType", "MuscleGroupType")
+                        .WithMany("MuscleGroups")
+                        .HasForeignKey("MuscleGroupTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FitnessTracker.Domain.Entities.WorkoutItem", b =>

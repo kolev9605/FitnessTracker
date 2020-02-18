@@ -1,3 +1,4 @@
 export class Exercise {
-    public name: string;
+  public Id: number;
+  public Name: string;
 }

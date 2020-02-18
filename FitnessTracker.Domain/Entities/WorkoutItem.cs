@@ -12,6 +12,8 @@
 
         public int Reps { get; set; }
 
+        public int Weight { get; set; }
+
         public int WorkoutId { get; set; }
 
         public Workout Workout { get; set; }
