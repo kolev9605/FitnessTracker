@@ -16,6 +16,7 @@ import { AuthInterceptor } from './auth/shared/auth.interceptor';
 import { WorkoutListComponent } from './workout/workout-list/workout-list.component';
 import { MaterialUiModule } from './material-ui.module';
 import { AddWorkoutComponent } from './workout/add-workout/add-workout.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddWorkoutComponent } from './workout/add-workout/add-workout.component
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaterialUiModule
+    MaterialUiModule,
+    NgbModule
   ],
   providers: [
     {

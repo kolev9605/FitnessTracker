@@ -1,12 +1,4 @@
-.content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-}
-
 .authForm {
-  grid-column: 2 / 3;
-  width: 100%;
   margin-top: 20px;
 }
 
