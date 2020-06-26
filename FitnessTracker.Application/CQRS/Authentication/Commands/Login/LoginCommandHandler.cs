@@ -31,7 +31,6 @@ namespace FitnessTracker.Application.CQRS.Authentication.Commands.Login
             }
 
             var isPasswordValid = await _userManager.CheckPasswordAsync(applicationUser, request.Password);
-            //PasswordVerificationResult result = this._passwordHasher.VerifyHashedPassword(applicationUser, applicationUser.PasswordHash, request.Password);
             if (isPasswordValid)
             {
                 var jtwTokenCreationResultModel = _jwtTokenService.GenerateJwtToken(applicationUser.Email, applicationUser);
