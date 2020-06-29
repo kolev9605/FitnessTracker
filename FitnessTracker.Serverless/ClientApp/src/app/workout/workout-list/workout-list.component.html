@@ -1,0 +1,17 @@
+<div class="content">
+  <app-workout 
+    *ngFor="let workout of workoutList.workouts" 
+    (workoutDeleted)="deleteWorkout($event)"
+    [workout]="workout" 
+    class="workout-item">
+  </app-workout>
+</div>
+
+<div class="button-content">
+  <button 
+    mat-raised-button color="primary" 
+    routerLink="/add-workout"
+    class="add-button">
+    Add workout
+  </button>
+</div>
