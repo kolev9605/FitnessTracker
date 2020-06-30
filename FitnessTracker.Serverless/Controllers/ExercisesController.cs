@@ -1,11 +1,9 @@
-﻿using FitnessTracker.Application.CQRS.Exercises.Queries.GetExercises;
-using FitnessTracker.Application.CQRS.Exercises.Queries.GetMuscleGroups;
+﻿using FitnessTracker.Application.AwsCQRS.Exercises.Queries.GetExercises;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace FitnessTracker.Api.Controllers
+namespace FitnessTracker.Serverless.Controllers
 {
     public class ExercisesController : BaseController
     {
@@ -20,13 +18,6 @@ namespace FitnessTracker.Api.Controllers
         public async Task<ActionResult<ExerciseListModel>> GetAll()
         {
             var result = await _mediator.Send(new GetExercisesQuery());
-            return Ok(result);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<ExerciseListModel>> GetMuscleGroups()
-        {
-            var result = await _mediator.Send(new GetMuscleGroupsQuery());
             return Ok(result);
         }
     }

@@ -73,6 +73,8 @@ namespace FitnessTracker.Api
             services.AddControllers()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginCommandValidator>());
 
+            services.AddAWSService<Amazon.S3.IAmazonS3>();
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
